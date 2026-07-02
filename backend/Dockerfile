@@ -1,7 +1,0 @@
-FROM python:3.11-slim
-WORKDIR /app
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
-COPY pyproject.toml uv.lock ./
-RUN uv sync --frozen --no-dev
-COPY . .
-CMD ["sh", "-c", "uv run alembic upgrade head && uv run python seed.py && uv run uvicorn app.main:app --host 0.0.0.0 --port 8000"]
