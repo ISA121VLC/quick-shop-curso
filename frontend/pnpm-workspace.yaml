@@ -1,0 +1,2 @@
+# Aprobaciones de build scripts (pnpm 11+): evita prompts interactivos en CI y Docker
+allowBuilds: {}
