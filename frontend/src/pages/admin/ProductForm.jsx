@@ -65,8 +65,8 @@ export default function ProductForm() {
 
   return (
     <div className="mx-auto max-w-xl">
-      <h1 className="mb-6 text-2xl font-bold">{id ? 'Editar producto' : 'Nuevo producto'}</h1>
-      <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg bg-white p-6 shadow-sm">
+      <h1 className="mb-6">{id ? 'Editar producto' : 'Nuevo producto'}</h1>
+      <form onSubmit={handleSubmit} noValidate className="space-y-4 border border-line bg-surface p-6">
         <FormError>{error}</FormError>
         <Field label="Nombre" htmlFor="name" error={errors.name}>
           <input id="name" className={inputCls} value={form.name} onChange={set('name')} />

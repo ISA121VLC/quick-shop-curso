@@ -38,7 +38,7 @@ Restricción adicional: UNIQUE (`cart_id`, `product_id`). Añadir un producto ya
 Prefijo base: `/api/cart`. Todos requieren rol `customer`.
 
 `CartOut`: `{ "id": int, "items": [CartItemOut], "total": Decimal, "item_count": int }`.
-`CartItemOut`: `{ "id": int, "product": ProductOut, "quantity": int, "subtotal": Decimal }`.
+`CartItemOut`: `{ "id": int, "product": ProductOut, "quantity": int, "subtotal": Decimal, "available": bool }`. `available` es `false` cuando el producto está inactivo; `total` y `subtotal` se serializan como cadena con 2 decimales.
 
 ### GET /api/cart
 

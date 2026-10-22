@@ -1,3 +1,89 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Tokens de ../DESIGN.md */
+  --color-accent: #ff6441;
+  --color-accent-text: #b83a1c;
+  --color-accent-tint: #ffefec;
+
+  --color-heading: #3c3c46;
+  --color-text: #454545;
+  --color-text-muted: #737373;
+  --color-ink: #2f2f2f;
+  --color-border: #dddbdd;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f7fa;
+
+  --color-slate: #5a6e7d;
+  --color-slate-light: #7a8591;
+  --color-teal: #0a6e80;
+
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-bold: 700;
+
+  --radius: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 40px;
+  --space-6: 64px;
+  --max-width: 1200px;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-regular);
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 38px;
+    font-weight: var(--weight-light);
+    color: var(--color-heading);
+  }
+
+  h2 {
+    font-size: 22px;
+    line-height: 34px;
+    font-weight: var(--weight-light);
+    color: var(--color-text);
+  }
+
+  h3 {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: var(--weight-regular);
+    color: var(--color-heading);
+  }
+
+  a {
+    font-weight: var(--weight-bold);
+    color: var(--color-accent-text);
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+  }
+
+  button,
+  label {
+    font-size: 14px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 2px;
+  }
+}

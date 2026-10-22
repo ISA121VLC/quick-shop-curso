@@ -39,6 +39,7 @@ quick-shop-curso/
   README.md
   docker-compose.yml
   .env.example               Variables para docker-compose (el .env real no se versiona)
+  DESIGN.md                  Guía de estilo visual del frontend (tokens de color, tipografía, forma y componentes)
   docs/
     products-images.json     Datos del seed de productos
     specs-prds/              Una especificación por módulo
@@ -54,6 +55,10 @@ quick-shop-curso/
 - Producto con stock 0: visible, pero no se puede añadir al carrito.
 - Pedidos: solo el admin cambia el estado, salvo que el cliente puede cancelar su propio pedido si está `pending`.
 - Seed idempotente al arrancar si la base de datos está vacía: 1 admin (`admin@quickshop.com`), 2 clientes y 20 productos.
+
+## Diseño visual
+
+`DESIGN.md` es la fuente de verdad del aspecto del frontend. Toda pantalla o componente nuevo debe usar solo sus tokens (colores, tipografía, radios, espacios) y sus reglas de contraste WCAG AA; no inventar colores, radios ni sombras. Los cambios de aspecto se hacen con CSS/Tailwind sin alterar el HTML que comprueban los tests. Si un caso no está cubierto, elegir la opción más sobria y avisar.
 
 ## Seguridad y configuración
 

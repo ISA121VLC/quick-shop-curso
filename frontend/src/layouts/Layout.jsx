@@ -1,12 +1,14 @@
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { secondaryBtn } from '../components/ui.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
+import { useCart } from '../context/CartContext.jsx'
 
 const linkCls = ({ isActive }) =>
-  `text-sm ${isActive ? 'font-semibold text-indigo-700' : 'text-slate-600 hover:text-slate-900'}`
+  `border-b-2 py-1 text-sm ${isActive ? 'border-accent text-heading' : 'border-transparent text-accent-text'}`
 
 export default function Layout() {
   const { user, logout } = useAuth()
+  const { itemCount } = useCart()
   const navigate = useNavigate()
 
   async function handleLogout() {
@@ -16,9 +18,9 @@ export default function Layout() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
-          <Link to="/" className="text-lg font-bold text-indigo-700">
+      <header className="border-b border-line bg-surface">
+        <div className="mx-auto flex max-w-page flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
+          <Link to="/" className="text-lg text-heading">
             QuickShop
           </Link>
           <nav className="flex flex-wrap items-center gap-4">
@@ -26,6 +28,22 @@ export default function Layout() {
               <NavLink to="/" end className={linkCls}>
                 Catálogo
               </NavLink>
+            )}
+            {user?.role === 'customer' && (
+              <>
+                <NavLink to="/pedidos" className={linkCls}>
+                  Mis pedidos
+                </NavLink>
+                <NavLink to="/carrito" className={linkCls}>
+                  Carrito
+                  <span
+                    aria-label={`${itemCount} productos en el carrito`}
+                    className="ml-2 inline-block bg-accent px-2 text-sm text-ink"
+                  >
+                    {itemCount}
+                  </span>
+                </NavLink>
+              </>
             )}
             {user?.role === 'admin' && (
               <>
@@ -35,13 +53,16 @@ export default function Layout() {
                 <NavLink to="/admin/usuarios" className={linkCls}>
                   Usuarios
                 </NavLink>
+                <NavLink to="/admin/pedidos" className={linkCls}>
+                  Pedidos
+                </NavLink>
               </>
             )}
           </nav>
           <div className="ml-auto flex flex-wrap items-center gap-3">
             {user ? (
               <>
-                <Link to="/perfil" className="text-sm text-slate-700 hover:underline">
+                <Link to="/perfil" className="text-sm">
                   {user.full_name}
                 </Link>
                 <button className={secondaryBtn} onClick={handleLogout}>
@@ -61,9 +82,12 @@ export default function Layout() {
           </div>
         </div>
       </header>
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-6">
+      <main className="mx-auto w-full max-w-page flex-1 px-4 py-6">
         <Outlet />
       </main>
+      <footer className="bg-slate-brand text-white">
+        <div className="mx-auto max-w-page px-4 py-4 text-sm">QuickShop</div>
+      </footer>
     </div>
   )
 }

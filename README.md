@@ -37,6 +37,21 @@ Antes de exponer la web fuera de `localhost`, cambiar `SEED_ADMIN_PASSWORD`, `SE
 | Administrador | `admin@quickshop.com` | valor de `SEED_ADMIN_PASSWORD` (`Admin1234!` en `.env.example`) |
 | Cliente | `cliente1@quickshop.com`, `cliente2@quickshop.com` | valor de `SEED_CUSTOMER_PASSWORD` (`Cliente1234!` en `.env.example`) |
 
+## Carrito y pedidos
+
+Los clientes añaden productos al carrito (`/carrito`), lo convierten en pedido y consultan su historial (`/pedidos`, `/pedidos/:id`). El administrador gestiona los pedidos en `/admin/pedidos`. Contratos detallados en `docs/specs-prds/carrito.md` y `docs/specs-prds/pedidos.md`.
+
+| Endpoint | Quién | Descripción |
+|----------|-------|-------------|
+| `GET /api/cart`, `DELETE /api/cart` | cliente | Ver y vaciar el carrito |
+| `POST /api/cart/items`, `PATCH`/`DELETE /api/cart/items/{id}` | cliente | Añadir, cambiar cantidad y eliminar ítems |
+| `POST /api/orders` | cliente | Crear un pedido desde el carrito |
+| `GET /api/orders`, `GET /api/orders/{id}` | cliente (los suyos), admin (todos) | Historial paginado y detalle |
+| `POST /api/orders/{id}/cancel` | cliente dueño | Cancelar un pedido propio en `pending` |
+| `PATCH /api/orders/{id}/status` | admin | Cambiar el estado (`confirmed`, `shipped`, `delivered`, `cancelled`) |
+
+El stock se valida al operar con el carrito y al crear el pedido, pero solo se descuenta al confirmarlo; cancelar un pedido `confirmed` o `shipped` lo restituye. No hay variables de entorno nuevas.
+
 ## Tests
 
 ```

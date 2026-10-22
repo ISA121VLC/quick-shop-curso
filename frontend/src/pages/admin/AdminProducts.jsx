@@ -30,7 +30,7 @@ export default function AdminProducts() {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold">Gestión de productos</h1>
+        <h1>Gestión de productos</h1>
         <Link to="/admin/productos/nuevo" className={primaryBtn}>Nuevo producto</Link>
       </div>
       {actionError && <StateMessage tone="error">{actionError}</StateMessage>}
@@ -39,9 +39,9 @@ export default function AdminProducts() {
       {status === 'ok' && data.items.length === 0 && <StateMessage>No hay productos.</StateMessage>}
       {status === 'ok' && data.items.length > 0 && (
         <>
-          <div className="overflow-x-auto rounded-lg border border-slate-200 bg-white">
+          <div className="overflow-x-auto border border-line bg-surface">
             <table className="min-w-full text-left text-sm">
-              <thead className="bg-slate-100 text-slate-600">
+              <thead className="bg-surface-alt text-heading">
                 <tr>
                   <th className="px-3 py-2">Nombre</th>
                   <th className="px-3 py-2">Precio</th>
@@ -52,7 +52,7 @@ export default function AdminProducts() {
               </thead>
               <tbody>
                 {data.items.map((p) => (
-                  <tr key={p.id} className="border-t border-slate-100">
+                  <tr key={p.id} className="border-t border-line">
                     <td className="px-3 py-2">{p.name}</td>
                     <td className="px-3 py-2">{formatPrice(p.price)}</td>
                     <td className="px-3 py-2">{p.stock}</td>

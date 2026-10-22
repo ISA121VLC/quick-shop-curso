@@ -43,8 +43,8 @@ export default function Register() {
 
   return (
     <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-bold">Crear cuenta</h1>
-      <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg bg-white p-6 shadow-sm">
+      <h1 className="mb-6">Crear cuenta</h1>
+      <form onSubmit={handleSubmit} noValidate className="space-y-4 border border-line bg-surface p-6">
         <FormError>{error}</FormError>
         <Field label="Nombre completo" htmlFor="full_name" error={errors.full_name}>
           <input id="full_name" className={inputCls} value={form.full_name} onChange={set('full_name')} />
@@ -64,9 +64,9 @@ export default function Register() {
           {submitting ? 'Creando...' : 'Registrarse'}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-slate-600">
+      <p className="mt-4 text-center text-sm text-body">
         ¿Ya tienes cuenta?{' '}
-        <Link to="/login" className="text-indigo-700 hover:underline">
+        <Link to="/login">
           Inicia sesión
         </Link>
       </p>

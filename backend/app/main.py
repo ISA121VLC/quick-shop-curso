@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import get_settings
 from app.db.startup import init_database
-from app.routers import auth, products, users
+from app.routers import auth, cart, orders, products, users
 
 
 @asynccontextmanager
@@ -29,7 +29,7 @@ def create_app() -> FastAPI:
     def health():
         return {"status": "ok"}
 
-    for router in (auth.router, users.router, products.router):
+    for router in (auth.router, users.router, products.router, cart.router, orders.router):
         app.include_router(router, prefix="/api")
     return app
 

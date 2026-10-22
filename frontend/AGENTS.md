@@ -36,6 +36,7 @@ frontend/
 - La URL de la API sale de una variable de entorno de Vite (`VITE_API_URL`); nunca hardcodeada. Vacía por defecto: el cliente usa rutas relativas `/api` y nginx las reenvía al backend, de modo que la web funciona desde cualquier IP o dominio.
 - El token JWT no se guarda en `localStorage` ni `sessionStorage`: viaja en una cookie `HttpOnly`. El frontend usa `credentials: "include"` y restaura la sesión con `GET /api/auth/me`.
 - Estados de carga, vacío y error en cada pantalla. Producto con stock 0: visible y con el botón de añadir deshabilitado. El administrador no ve carrito.
+- Estilo visual según `../DESIGN.md`: tokens declarados una sola vez como variables CSS en `src/index.css` y expuestos en `tailwind.config.js` con nombres semánticos (`bg-accent`, `text-accent-text`, `text-heading`, `text-body`, `text-muted`, `border-line`, `bg-surface-alt`, `bg-slate-brand`...). `theme.colors`, `borderRadius` y `boxShadow` se sustituyen, no se extienden: las clases de la paleta por defecto, `rounded-*` y `shadow-*` no existen. Estilos compartidos en `src/components/ui.jsx` (`primaryBtn`, `secondaryBtn`, `inputCls`, `StateMessage`, `EmptyState`, `Badge`, `FormError`). `src/design/tokens.test.js` falla si reaparece algo fuera de la guía o un par de color no cumple AA.
 - Textos de interfaz en castellano. Sin emojis.
 
 ## Decisiones técnicas

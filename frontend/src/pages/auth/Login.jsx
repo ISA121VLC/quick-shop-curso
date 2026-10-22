@@ -41,8 +41,8 @@ export default function Login() {
 
   return (
     <div className="mx-auto max-w-sm">
-      <h1 className="mb-6 text-2xl font-bold">Iniciar sesión</h1>
-      <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg bg-white p-6 shadow-sm">
+      <h1 className="mb-6">Iniciar sesión</h1>
+      <form onSubmit={handleSubmit} noValidate className="space-y-4 border border-line bg-surface p-6">
         <FormError>{error}</FormError>
         <Field label="Email" htmlFor="email" error={fieldErrors.email}>
           <input id="email" type="email" className={inputCls} value={email} autoComplete="email"
@@ -56,9 +56,9 @@ export default function Login() {
           {submitting ? 'Entrando...' : 'Entrar'}
         </button>
       </form>
-      <p className="mt-4 text-center text-sm text-slate-600">
+      <p className="mt-4 text-center text-sm text-body">
         ¿No tienes cuenta?{' '}
-        <Link to="/registro" className="text-indigo-700 hover:underline">
+        <Link to="/registro">
           Regístrate
         </Link>
       </p>

@@ -27,12 +27,12 @@ function NameForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-semibold">Datos personales</h2>
+    <form onSubmit={handleSubmit} noValidate className="space-y-4 border border-line bg-surface p-6">
+      <h2>Datos personales</h2>
       <FormError>{error}</FormError>
-      {ok && <p role="status" className="text-sm text-green-700">Perfil actualizado</p>}
+      {ok && <p role="status" className="text-sm text-teal-brand">Perfil actualizado</p>}
       <Field label="Email" htmlFor="profile-email">
-        <input id="profile-email" className={`${inputCls} bg-slate-100`} value={user.email} readOnly />
+        <input id="profile-email" className={`${inputCls} bg-surface-alt`} value={user.email} readOnly />
       </Field>
       <Field label="Nombre completo" htmlFor="profile-name">
         <input id="profile-name" className={inputCls} value={name} onChange={(e) => setName(e.target.value)} />
@@ -70,10 +70,10 @@ function PasswordForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4 rounded-lg bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-semibold">Cambiar contraseña</h2>
+    <form onSubmit={handleSubmit} noValidate className="space-y-4 border border-line bg-surface p-6">
+      <h2>Cambiar contraseña</h2>
       <FormError>{error}</FormError>
-      {ok && <p role="status" className="text-sm text-green-700">Contraseña actualizada</p>}
+      {ok && <p role="status" className="text-sm text-teal-brand">Contraseña actualizada</p>}
       <Field label="Contraseña actual" htmlFor="current" error={errors.current}>
         <input id="current" type="password" className={inputCls} value={form.current} onChange={set('current')} />
       </Field>
@@ -91,7 +91,7 @@ function PasswordForm() {
 export default function Profile() {
   return (
     <div className="mx-auto max-w-xl space-y-6">
-      <h1 className="text-2xl font-bold">Mi perfil</h1>
+      <h1>Mi perfil</h1>
       <NameForm />
       <PasswordForm />
     </div>

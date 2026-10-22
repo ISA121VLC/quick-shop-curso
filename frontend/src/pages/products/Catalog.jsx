@@ -34,7 +34,7 @@ export default function Catalog() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Catálogo</h1>
+      <h1>Catálogo</h1>
       <form onSubmit={handleSearch} className="flex flex-wrap items-center gap-3">
         <input aria-label="Buscar productos" placeholder="Buscar por nombre" className={`${inputCls} sm:max-w-xs`}
           value={q} onChange={(e) => setQ(e.target.value)} />

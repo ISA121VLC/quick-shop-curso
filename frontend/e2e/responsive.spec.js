@@ -18,13 +18,16 @@ test('pantallas públicas y de cliente sin scroll horizontal en móvil', async (
   await login(page, CUSTOMER)
   await expect(page.getByRole('article').first()).toBeVisible()
   await expectNoHorizontalScroll(page)
-  await page.goto('/perfil')
-  await expectNoHorizontalScroll(page)
+  for (const path of ['/perfil', '/carrito', '/pedidos']) {
+    await page.goto(path)
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await expectNoHorizontalScroll(page)
+  }
 })
 
 test('pantallas de admin sin scroll horizontal en móvil', async ({ page }) => {
   await login(page, ADMIN)
-  for (const path of ['/admin/productos', '/admin/productos/nuevo', '/admin/usuarios']) {
+  for (const path of ['/admin/productos', '/admin/productos/nuevo', '/admin/usuarios', '/admin/pedidos']) {
     await page.goto(path)
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
     await expectNoHorizontalScroll(page)
