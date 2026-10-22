@@ -33,7 +33,7 @@ frontend/
 
 - Tailwind CSS para todo el estilo, mobile-first. Toda pantalla debe ser responsive.
 - Un `Layout` común con header (navegación, contador del carrito, sesión) que envuelve el contenido de cada página mediante `Outlet`.
-- La URL de la API sale de una variable de entorno de Vite (`VITE_API_URL`); nunca hardcodeada.
+- La URL de la API sale de una variable de entorno de Vite (`VITE_API_URL`); nunca hardcodeada. Vacía por defecto: el cliente usa rutas relativas `/api` y nginx las reenvía al backend, de modo que la web funciona desde cualquier IP o dominio.
 - El token JWT no se guarda en `localStorage` ni `sessionStorage`: viaja en una cookie `HttpOnly`. El frontend usa `credentials: "include"` y restaura la sesión con `GET /api/auth/me`.
 - Estados de carga, vacío y error en cada pantalla. Producto con stock 0: visible y con el botón de añadir deshabilitado. El administrador no ve carrito.
 - Textos de interfaz en castellano. Sin emojis.
